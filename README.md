@@ -1,2 +1,2 @@
-# TrabalhoED
+# ExercíciosED
 Exercícios ED feito em aula
