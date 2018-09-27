@@ -1,7 +1,7 @@
 all: compila
-	./prog
+	 ./prog
 compila: main.o ListaDinamica.o
-	gcc main.o ListaDinamica.o -o prog;
+	gcc main.o ListaDinamica.o -o prog
 main.o: main.c
 	gcc -c main.c
 ListaVetor.o: ListaDinamica.c
