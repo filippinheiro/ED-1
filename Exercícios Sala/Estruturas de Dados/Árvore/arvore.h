@@ -12,6 +12,8 @@ Arvore* criarArvore(char, Arvore*, Arvore*);
 int estaVazia(Arvore*);
 int pertenceArvore(Arvore*, char);
 void imprimeArvore(Arvore*);
+int altura(Arvore*);
+int numeroNos(Arvore*);
 Arvore* liberarArvore(Arvore*);
 void imprimeCPilha(Arvore*);
 #endif

@@ -33,15 +33,27 @@ int estaVazia(Arvore* a) {
 void imprimeArvore(Arvore* a){
 	printf("<");
 	if(!estaVazia(a)) {
-		printf("%c ", a->info);
+		printf(" %c ", a->info);
 		imprimeArvore(a->left);
 		imprimeArvore(a->right);
 	}
 	printf(">");
 }
 
-/*
+int altura(Arvore* a){
+	if(estaVazia(a))
+		return -1;
+	else {
+		int l = altura(a->left);
+		int r = altura(a->right);
+		if(l > r)
+			return 1 + l;
+		else 
+			return 1 + r; 
+	}
+}
 
+/*
 void imprimeCPilha(Arvore* a){
 	Arvore* aux;
 	Pilha* p = criarPilha();
@@ -58,6 +70,13 @@ void imprimeCPilha(Arvore* a){
 }
 */
 
+int numeroNos(Arvore* a){
+	if(estaVazia(a))
+		return 0;
+	else 
+		return 1 + numeroNos(a->left) + numeroNos(a->right);
+}
+
 Arvore* liberarArvore(Arvore* a){
 	if(!estaVazia(a)){
 		liberarArvore(a->left);
@@ -65,4 +84,17 @@ Arvore* liberarArvore(Arvore* a){
 		free(a);
 	}
 	return NULL;
+}
+
+int pertenceArvore(Arvore* a, char c){
+	if(estaVazia(a))
+		return 0;
+	else {
+		if (c == a->info)
+			return 1;
+		else {
+			return(pertenceArvore(a->left,c)||pertenceArvore(a->right, c));
+		}
+	}
+
 }
