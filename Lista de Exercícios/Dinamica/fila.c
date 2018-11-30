@@ -56,7 +56,7 @@ float remover(Fila* f){
 		v = p->info;
 		f->ini = p->prox;
 		if(f->ini == NULL)
-			f->fim == NULL;
+			f->fim = NULL;
 		free(p);
 		return v;
 	} else {

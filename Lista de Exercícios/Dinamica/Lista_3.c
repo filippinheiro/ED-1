@@ -11,41 +11,61 @@ float maior(Fila* fila){
 		if(n->info > maior)
 			maior = n->info;
 	}
-	return maior;
+	return maior; 
+} 
+
+void concatenaPilhas1(Pilha* p1, Pilha* p2) {
+	Pilha* p_aux = criarPilha(); 
+	while(!estaVazia(p2)) 
+		push(p_aux, pop(p2));
+	while(!estaVazia(p_aux))
+		push(p1, pop(p_aux));
+} 
+
+void concatenaPilhas2(Pilha* p1, Pilha* p2) {
+	if(estaVazia(p2))
+		return;
+	else {
+		float v = pop(p2);
+		concatenaPilhas2(p1, p2);
+		push(p1, v);
+	} 
+} 
+
+void combinaFila1(Fila* f_res, Fila* f1, Fila* f2) {
+	while(!vazia(f1) || !vazia(f2)) {
+		if(!vazia(f1))
+			inserir(f_res, remover(f1));
+		if(!vazia(f2))
+			inserir(f_res, remover(f2));
+	}
 }
 
-void concatenaPilhas(Pilha* p1, Pilha* p2) {
-	Pilha* p_aux = criarPilha();
-	imprime(p1);
-	imprime(p2);
-	while(!estaVazia(p2)) {
-		NoLista* p;
-		for(p = p2->topo; p!=NULL; p=p->prox);
-		push(p_aux, p->info);
-		pop(p2);
-	}
-	while(!estaVazia(p_aux)) {
-		NoLista* p;
-		for(p = p_aux->topo; p!=NULL; p=p->prox);
-		push(p1, p->info);
-		pop(p_aux);
-	}
-	imprime(p1);
-	imprime(p2);
-}
-
-int main(){
-	//Fila* f1 = criarFila();
-	Pilha* p1 = criarPilha();
-	Pilha* p2 = criarPilha();
-	push(p1, 1);
-	push(p1, 3);
-	push(p2, 4);
-	push(p2, 5);
-	push(p2, 7.8);
-	push(p2, 9.1);
-	concatenaPilhas(p1, p2);
-	return 0;
+void combinaFila2(Fila* f_res, Fila* f1, Fila* f2) {
 	
-		
 }
+
+int main() {
+	Pilha* p1, *p2;
+	p1 = criarPilha();
+	p2 = criarPilha();
+	Fila* f1, *f2, *f_res;
+	f1 = criarFila();
+	f2 = criarFila();
+	f_res = criarFila();
+	inserir(f1, 1);
+	inserir(f1, 4);
+	inserir(f2, 2.1);
+	inserir(f2, 3.0);
+	inserir(f2, 4.5);
+	imprimeFila(f1);
+	imprimeFila(f2);
+	imprimeFila(f_res);
+	printf("---------------\n");
+	combinaFila(f_res, f1, f2);
+	imprimeFila(f1);
+	imprimeFila(f2);
+	imprimeFila(f_res);
+	return 0;	
+		
+} 
